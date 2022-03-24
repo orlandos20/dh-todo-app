@@ -1,27 +1,29 @@
 # React todo list
-Um aplicativo de lista de tarefas simples desenvolvido com React, Chakra UI, React icons
 
-##### [Live Demo](https://tasks.fabra.dev) on Vercel
-
-<p align="center">
-  <a src="https://tasks.fabra.dev" target="_blank"><img src="./readme/exemplo.png" width="100%" height="auto" /></a>
-</p>
+Aplicativo de lista de tareas simple, hecho con React, Chakra UI, React icons
 
 ## 🚀 Getting Started
 
-+ Clone este repositório 
+- Clone este repositorio
+
 ```jsx
 git clone https://github.com/raminhuk/react-todo-lis.git
 ```
-+ Entre na pasta react-todo-list
+
+- Entra en la carpeta dh-react-todo-list
+
 ```jsx
-cd react-todo-list
+cd dh-react-todo-list
 ```
-+ Execute npm install para instalar as dependências 
+
+- Ejecuta npm install para instalar las dependencias
+
 ```jsx
 npm install
 ```
-+ Execute npm start para rodar o projeto em http://localhost:3000/
+
+- Ejecuta npm start para correr el proyecto.
+
 ```jsx
 npm start
 ```

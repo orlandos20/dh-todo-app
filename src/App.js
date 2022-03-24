@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Heading,
   IconButton,
@@ -8,17 +9,10 @@ import {
 import ListaTareas from "./components/ListaTareas.jsx";
 import AgregarTarea from "./components/AgregarTarea";
 import { FaSun, FaMoon } from "react-icons/fa";
-import { useState, useEffect } from "react";
 
 function App() {
   const toast = useToast();
-  const [tareas, agregarTareas] = useState(
-    () => JSON.parse(localStorage.getItem("tareas")) || []
-  );
-
-  useEffect(() => {
-    localStorage.setItem("tareas", JSON.stringify(tareas));
-  }, [tareas]);
+  const [tareas, agregarTareas] = useState([]);
 
   function controlBorrarTarea(id) {
     const tareasFiltradas = tareas.filter((tarea) => {
@@ -31,19 +25,8 @@ function App() {
     agregarTareas([]);
   }
 
-  function controlChequearTarea(id) {
-    const nuevaTareacheck = tareas.map((tarea, index, array) => {
-      if (tarea.id === id) {
-        tarea.check = !tarea.check;
-      }
-      return tarea;
-    });
-
-    agregarTareas(nuevaTareacheck);
-  }
-
-  function controlActualizarTarea(id, body, onClose) {
-    const info = body.trim();
+  function controlActualizarTarea(id, nuevoTextoTarea, onClose) {
+    const info = nuevoTextoTarea.trim();
 
     if (!info) {
       toast({
@@ -57,9 +40,9 @@ function App() {
       return;
     }
 
-    const tareaActualizada = tareas.map((tarea, index, array) => {
+    const tareaActualizada = tareas.map((tarea) => {
       if (tarea.id === id) {
-        tarea.body = body;
+        tarea.tareaTexto = nuevoTextoTarea;
         tarea.check = false;
       }
       return tarea;
@@ -95,13 +78,13 @@ function App() {
       >
         Lista de tareas
       </Heading>
+
       <AgregarTarea controlAgregarTarea={controlAgregarTarea} />
       <ListaTareas
         tareas={tareas}
         controlActualizarTarea={controlActualizarTarea}
         controlBorrarTarea={controlBorrarTarea}
         controlBorrarTodas={controlBorrarTodas}
-        controlChequearTarea={controlChequearTarea}
       />
     </VStack>
   );

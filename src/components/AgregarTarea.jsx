@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button, HStack, Input, useToast } from "@chakra-ui/react";
-import { nanoid } from "nanoid";
+
+let contadorTareas = 0;
 
 function AgregarTarea({ controlAgregarTarea }) {
   const toast = useToast();
@@ -26,8 +27,8 @@ function AgregarTarea({ controlAgregarTarea }) {
     }
 
     const tarea = {
-      id: nanoid(),
-      body: textoTarea,
+      id: contadorTareas++,
+      tareaTexto: textoTarea,
       check: false,
     };
 

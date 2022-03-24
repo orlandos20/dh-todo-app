@@ -18,7 +18,7 @@ import { FiEdit } from "react-icons/fi";
 
 function ActualizarTarea({ tarea, controlActualizarTarea }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [body, setBody] = useState("");
+  const [nuevoTextoTarea, modificarTextoTarea] = useState("");
 
   const refInicial = React.useRef();
 
@@ -33,16 +33,16 @@ function ActualizarTarea({ tarea, controlActualizarTarea }) {
       >
         <ModalOverlay />
         <ModalContent w="90%">
-          <ModalHeader>Atualize sua tarefa </ModalHeader>
+          <ModalHeader>Actualice su tarea </ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
             <FormControl>
               <Input
                 ref={refInicial}
                 placeholder="Escriba su tarea"
-                defaultValue={tarea.body}
-                onChange={(e) => setBody(e.target.value)}
-                onFocus={(e) => setBody(e.target.value)}
+                defaultValue={tarea.tareaTexto}
+                onChange={(e) => modificarTextoTarea(e.target.value)}
+                onFocus={(e) => modificarTextoTarea(e.target.value)}
               />
             </FormControl>
           </ModalBody>
@@ -53,9 +53,11 @@ function ActualizarTarea({ tarea, controlActualizarTarea }) {
             </Button>
             <Button
               colorScheme="blue"
-              onClick={() => controlActualizarTarea(tarea.id, body, onClose)}
+              onClick={() =>
+                controlActualizarTarea(tarea.id, nuevoTextoTarea, onClose)
+              }
             >
-              Salvar
+              Actualizar
             </Button>
           </ModalFooter>
         </ModalContent>

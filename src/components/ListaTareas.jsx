@@ -15,7 +15,6 @@ function ListaTareas({
   controlActualizarTarea,
   controlBorrarTarea,
   controlBorrarTodas,
-  controlChequearTarea,
 }) {
   if (!tareas.length) {
     return (
@@ -47,9 +46,8 @@ function ListaTareas({
               borderRadius="lg"
               as={tarea.check ? "s" : ""}
               cursor="pointer"
-              onClick={() => controlChequearTarea(tarea.id)}
             >
-              {tarea.body}
+              {tarea.tareaTexto}
             </Text>
             <BorrarTarea
               tarea={tarea}
