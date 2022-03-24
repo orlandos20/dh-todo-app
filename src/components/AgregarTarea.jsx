@@ -1,11 +1,14 @@
 import { useState } from "react";
-import { Button, HStack, Input, useToast } from "@chakra-ui/react";
-import { nanoid } from "nanoid";
+import { useDispatch } from "react-redux";
+import { accionAgregarTarea } from "../redux/actions";
 
-function AgregarTarea({ controlAgregarTarea }) {
+import { Button, HStack, Input, useToast } from "@chakra-ui/react";
+
+function AgregarTarea() {
   const toast = useToast();
   const [contenido, agregarContenido] = useState("");
   const [estadoCampo, agregarEstadoCampo] = useState(true);
+  const dispatch = useDispatch();
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -26,12 +29,11 @@ function AgregarTarea({ controlAgregarTarea }) {
     }
 
     const tarea = {
-      id: nanoid(),
-      body: textoTarea,
+      tareaTexto: textoTarea,
       check: false,
     };
 
-    controlAgregarTarea(tarea);
+    dispatch(accionAgregarTarea(tarea));
     agregarContenido("");
   }
 

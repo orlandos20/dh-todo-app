@@ -1,47 +1,48 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { accionBorrarTarea } from "../redux/actions";
+import { accionBorrarTodas } from "../redux/actions";
 import {
   Modal,
   ModalOverlay,
   ModalContent,
   ModalHeader,
   ModalFooter,
-  ModalBody,
   Button,
-  Text,
   useDisclosure,
-  IconButton,
 } from "@chakra-ui/react";
-import { FiTrash2 } from "react-icons/fi";
 
-const BorrarTarea = ({ tarea }) => {
+const BorrarTodasTareas = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const dispatch = useDispatch();
 
-  function controlBorrarTarea(id) {
-    dispatch(accionBorrarTarea(id));
+  function controlBorrarTodas() {
+    dispatch(accionBorrarTodas());
   }
 
   return (
     <>
-      <IconButton icon={<FiTrash2 />} isRound="true" onClick={onOpen} />
+      <Button
+        colorScheme="gray"
+        px="8"
+        h="45"
+        color="gray.500"
+        mt="8"
+        onClick={onOpen}
+      >
+        Excluir Todos
+      </Button>
 
       <Modal isCentered isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent w="90%">
-          <ModalHeader>Realmente quieres borrar la tarea?</ModalHeader>
-          <ModalBody>
-            <Text>{tarea.body}</Text>
-          </ModalBody>
+          <ModalHeader>
+            Realmente quieres eliminar todas las tareas?
+          </ModalHeader>
           <ModalFooter>
             <Button mr={3} onClick={onClose}>
               No
             </Button>
-            <Button
-              colorScheme="blue"
-              onClick={() => controlBorrarTarea(tarea.id, onClose)}
-            >
+            <Button colorScheme="blue" onClick={() => controlBorrarTodas()}>
               Si
             </Button>
           </ModalFooter>
@@ -51,4 +52,4 @@ const BorrarTarea = ({ tarea }) => {
   );
 };
 
-export default BorrarTarea;
+export default BorrarTodasTareas;

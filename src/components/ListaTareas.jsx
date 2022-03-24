@@ -1,6 +1,7 @@
 import React from "react";
 import ActualizarTarea from "./ActualizarTarea";
-import { BorrarTarea, BorrarTodasTareas } from "./BorrarTarea";
+import BorrarTarea from "./BorrarTarea";
+import BorrarTodasTareas from "./BorrarTodas";
 import {
   HStack,
   Box,
@@ -10,13 +11,7 @@ import {
   StackDivider,
 } from "@chakra-ui/react";
 
-function ListaTareas({
-  tareas,
-  controlActualizarTarea,
-  controlBorrarTarea,
-  controlBorrarTodas,
-  controlChequearTarea,
-}) {
+function ListaTareas({ tareas }) {
   if (!tareas.length) {
     return (
       <>
@@ -47,25 +42,17 @@ function ListaTareas({
               borderRadius="lg"
               as={tarea.check ? "s" : ""}
               cursor="pointer"
-              onClick={() => controlChequearTarea(tarea.id)}
             >
-              {tarea.body}
+              {tarea.tareaTexto}
             </Text>
-            <BorrarTarea
-              tarea={tarea}
-              controlBorrarTarea={controlBorrarTarea}
-              controlBorrarTodas={controlBorrarTodas}
-            />
-            <ActualizarTarea
-              tarea={tarea}
-              controlActualizarTarea={controlActualizarTarea}
-            />
+            <BorrarTarea tarea={tarea} />
+            <ActualizarTarea tarea={tarea} />
           </HStack>
         ))}
       </VStack>
 
       <Flex>
-        <BorrarTodasTareas controlBorrarTodas={controlBorrarTodas} />
+        <BorrarTodasTareas />
       </Flex>
     </>
   );
